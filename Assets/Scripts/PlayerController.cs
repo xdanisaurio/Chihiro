@@ -13,7 +13,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] public float interactionDistance = 3f;
 
-    [SerializeField] public KeyCode interactKey = KeyCode.E; 
+    [SerializeField] public KeyCode interactKey = KeyCode.E;
+
+    [SerializeField] Joystick joystick;
 
 
     void Start()
@@ -23,8 +25,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        horizontalMove = Input.GetAxis("Horizontal");
-        verticalMove = Input.GetAxis("Vertical");
+        //horizontalMove = Input.GetAxis("Horizontal");
+        //verticalMove = Input.GetAxis("Vertical");
+
+        horizontalMove = joystick.Horizontal;
+        verticalMove = joystick.Vertical;
+
 
         if (Input.GetKeyDown(interactKey))
         {
@@ -37,7 +43,7 @@ public class PlayerController : MonoBehaviour
         player.Move(new Vector3(horizontalMove, 0, verticalMove) * playerSpeed * Time.deltaTime);
     }
 
-    void TryInteract()
+     public void TryInteract()
     {
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;

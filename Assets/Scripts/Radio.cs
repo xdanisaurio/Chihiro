@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Radio : MonoBehaviour, IInteractuable
 {
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] AudioSource audioSource;
 
     void Start()
     {
@@ -11,10 +11,12 @@ public class Radio : MonoBehaviour, IInteractuable
 
     public void Interact()
     {
+
         if (audioSource.isPlaying)
         {
             audioSource.Stop();
         }
+
         else
         {
             audioSource.Play();
